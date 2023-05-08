@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+   <h:outputStylesheet name = "styles.css"  />
+</h:head>
+
+<h:body>
+   <div class="wrapper clearfix">
+      <div class="logo">
+         <img src="resources/logo1.png" alt="Unicorn"/>
+      </div>
+      <div class="h1">
+         <h1>Welcome to Unicorns school</h1>
+      </div>
+      <div class="logo">
+         <img src="resources/logo2.png" alt="Unicorn"/>
+      </div>
+   </div>
+   <h2>We have these students:</h2>
+   <h:dataTable value="#{studentModel.allStudents}" var="student"
+                styleClass = "studentTable"
+                headerClass = "studentTableHeader"
+                rowClasses = "studentTableOddRow,studentTableEvenRow">
+      <h:column>
+         <f:facet name="header">Name</f:facet>
+         #{student.name}
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">Surname</f:facet>
+         #{student.surname}
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">Student id</f:facet>
+         #{student.studentId}
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">Class taken</f:facet>
+         #{student.classRoom.className}
+      </h:column>
+
+      <h:column pt:style="width:300px;text-align:left;">
+         <f:facet name="header">Activities taken</f:facet>
+         <ui:repeat value="#{student.activities}" var="activities">
+            <li>
+               #{activities.name}, #{activities.teacher}
+            </li>
+         </ui:repeat>
+      </h:column>
+
+   </h:dataTable>
+   <h3>Add new student:</h3>
+      <h:form class="form">
+         <div class="inputs">
+            <label>Name:</label>
+            <h:inputText a:placeholder="Name" value="#{studentModel.studentToCreate.name}" required="true" />
+         </div>
+         <div class="inputs">
+            <label>Surname:</label>
+            <h:inputText a:placeholder="Surname" value="#{studentModel.studentToCreate.surname}" required="true" />
+         </div>
+         <div class="inputs">
+            <label>Student id:</label>
+            <h:inputText a:placeholder="Student id" value="#{studentModel.studentToCreate.studentId}" required="true" />
+         </div>
+         <div class="inputs">
+            <label>Class taken:</label>
+            <h:selectOneMenu value="#{studentModel.classId}">
+               <f:selectItem itemLabel="Select a Class" />
+               <f:selectItems value="#{studentModel.classRoomList}" var="class" itemLabel="#{class.className}" itemValue="#{class.id}"/>
+            </h:selectOneMenu>
+         </div>
+         <h:commandButton value="Add new student" actionListener="#{studentModel.createStudent}" action="studentsList?faces-redirect=true"/>
+      </h:form>
+
+   <h:link class="goBack" outcome="index" value="Back to main page"/>
+
+</h:body>
+</html>

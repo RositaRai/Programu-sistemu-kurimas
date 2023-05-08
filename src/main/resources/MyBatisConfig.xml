@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="it.vu.mybatis.model.Class" alias="Class"/>
+        <typeAlias type="it.vu.mybatis.model.Student" alias="Student"/>
+        <typeAlias type="it.vu.mybatis.model.Activities" alias="Activities"/>
+        <typeAlias type="it.vu.mybatis.model.ActivitiesStudents" alias="ActivitiesStudents"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="JNDI">
+                <property name="data_source" value="PSKDataSource"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis.xml/ClassMapper.xml"/>
+        <mapper resource="mybatis.xml/StudentMapper.xml"/>
+        <mapper resource="mybatis.xml/ActivitiesMapper.xml"/>
+        <mapper resource="mybatis.xml/ActivitiesStudentsMapper.xml"/>
+    </mappers>
+</configuration>

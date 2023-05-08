@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+
+<h:head>
+   <h:outputStylesheet name = "stylesMy.css"  />
+</h:head>
+
+<h:body>
+   <div class="wrapper clearfix">
+      <div class="logo">
+         <img src="resourcesMy/logo1.png" alt="Unicorn"/>
+      </div>
+      <div class="h1">
+         <h1>Welcome to Unicorns school</h1>
+      </div>
+      <div class="logo">
+         <img src="resourcesMy/logo2.png" alt="Unicorn"/>
+      </div>
+   </div>
+   <h2>We have these classes:</h2>
+   <h:dataTable value="#{classModelMy.allClasses}" var="class"
+                styleClass = "classRoomTable"
+                headerClass = "classRoomTableHeader"
+                rowClasses = "classRoomTableOddRow,classRoomTableEvenRow">
+      <h:column>
+         <f:facet name="header">Class name</f:facet>
+         <h:link value="#{class.classname}" outcome="classStudentListMy?classId=#{class.id}" />
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">Teacher</f:facet>
+         #{class.teacher}
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">Number of students</f:facet>
+         #{class.students.size()}
+      </h:column>
+   </h:dataTable>
+
+   <h3>Add new class:</h3>
+      <h:form class="form">
+         <div class="inputs">
+            <label class="labels">Class name:</label>
+            <h:inputText a:placeholder="Class name" value="#{classModelMy.classToCreate.classname}" required="true" />
+         </div>
+         <div class="inputs">
+            <label class="labels">Teachers name surname:</label>
+            <h:inputText a:placeholder="Teachers name surname" value="#{classModelMy.classToCreate.teacher}" required="true" />
+         </div>
+         <h:commandButton value="Add new class" actionListener="#{classModelMy.createClass}" action="classListMy?faces-redirect=true"/>
+      </h:form>
+   <h:link value="Back to menu" outcome="indexMy"/>
+</h:body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+   <h:outputStylesheet name = "stylesMy.css"  />
+</h:head>
+
+<h:body>
+   <div class="wrapper clearfix">
+      <div class="logo">
+         <img src="resourcesMy/logo1.png" alt="Unicorn"/>
+      </div>
+      <div class="h1">
+         <h1>Welcome to Unicorns school</h1>
+      </div>
+      <div class="logo">
+         <img src="resourcesMy/logo2.png" alt="Unicorn"/>
+      </div>
+   </div>
+   <h2>Students list of #{studentsForClassModelMy.classRoom.classname} class:</h2>
+   <ol>
+      <ui:repeat value="#{studentsForClassModelMy.classRoom.students}" var="student">
+         <li>
+            #{student.name} #{student.surname}, studid: #{student.studentid}
+            <br/>
+         </li>
+      </ui:repeat>
+   </ol>
+   <h3>You can add student to class by student id</h3>
+   <h:form class="form">
+      <div class="inputs">
+         <label>Student id:</label>
+         <h:inputText a:placeholder="Student id" value="#{studentsForClassModelMy.studentId}" required="true" />
+      </div>
+      <h:commandButton value="Add student"
+                       actionListener="#{studentsForClassModelMy.addStudentToClass}"
+                       action="#{'classStudentListMy?faces-redirect=true&amp;classId='.concat(studentsForClassModelMy.classRoom.id)}">
+         <f:param name="classId" value="#{studentsForClassModelMy.classRoom.id}" />
+      </h:commandButton>
+   </h:form>
+   <h4>Here is students list who do not have class:</h4>
+   <ol>
+      <ui:repeat value="#{studentsForClassModelMy.studentsWithoutClass}" var="student">
+         <li>
+            #{student.name} #{student.surname}, studid: #{student.studentid}
+         </li>
+      </ui:repeat>
+   </ol>
+   <h:link outcome="classListMy" value="Back to class page"/>
+</h:body>
+</html>

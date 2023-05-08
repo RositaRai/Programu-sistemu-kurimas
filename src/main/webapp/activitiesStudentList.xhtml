@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <h:outputStylesheet name = "styles.css"  />
+</h:head>
+<h:body>
+    <h2>Students list of #{studentsForActivitiesModel.activities.name} activity:</h2>
+    <ol>
+        <ui:repeat value="#{studentsForActivitiesModel.activities.students}" var="student">
+            <li>
+                #{student.name} #{student.surname}, studid: #{student.studentId}
+            </li>
+        </ui:repeat>
+    </ol>
+    <h3>You can add student to activity by student id:</h3>
+    <h:form class="form">
+        <div class="inputs">
+            <label>Student id:</label>
+            <h:inputText a:placeholder="Student id" value="#{studentsForActivitiesModel.studentId}" required="true" />
+        </div>
+        <h:commandButton value="Add student"
+                         actionListener="#{studentsForActivitiesModel.addStudentToActivity}"
+                         action="#{'activitiesStudentList?faces-redirect=true&amp;id='.concat(studentsForActivitiesModel.activities.id)}">
+            <f:param name="id" value="#{studentsForActivitiesModel.activities.id}" />
+        </h:commandButton>
+    </h:form>
+    <h4>Here is students list who do not have this activity:</h4>
+    <ol>
+        <ui:repeat value="#{studentsForActivitiesModel.studentsWithoutThisActivity}" var="student">
+            <li>
+                #{student.name} #{student.surname}, studid: #{student.studentId}
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:link class="goBack" outcome="activitiesList" value="Back to class list page"/>
+</h:body>
+</html>

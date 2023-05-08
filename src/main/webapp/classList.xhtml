@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+   <h:outputStylesheet name = "styles.css"  />
+</h:head>
+
+<h:body>
+   <div class="wrapper clearfix">
+      <div class="logo">
+         <img src="resources/logo1.png" alt="Unicorn"/>
+      </div>
+      <div class="h1">
+         <h1>Welcome to Unicorns school</h1>
+      </div>
+      <div class="logo">
+         <img src="resources/logo2.png" alt="Unicorn"/>
+      </div>
+   </div>
+   <h2>We have these classes:</h2>
+   <h:dataTable value="#{classModel.allClasses}" var="classRoom"
+                styleClass = "classRoomTable"
+                headerClass = "classRoomTableHeader"
+                rowClasses = "classRoomTableOddRow,classRoomTableEvenRow">
+      <h:column>
+         <f:facet name="header">Class name</f:facet>
+         <h:link value="#{classRoom.className}" outcome="classStudentList?id=#{classRoom.id}" />
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">Teacher</f:facet>
+         #{classRoom.teacher}
+      </h:column>
+
+      <h:column>
+         <f:facet name="header">Number of students</f:facet>
+         #{classRoom.students.size()}
+      </h:column>
+   </h:dataTable>
+
+   <h3>Add new class:</h3>
+      <h:form class="form">
+         <div class="inputs">
+            <label class="labels">Class name:</label>
+            <h:inputText a:placeholder="Class name" value="#{classModel.classToCreate.className}" required="true" />
+         </div>
+         <div class="inputs">
+            <label class="labels">Teachers name surname:</label>
+            <h:inputText a:placeholder="Teachers name surname" value="#{classModel.classToCreate.teacher}" required="true" />
+         </div>
+         <h:commandButton value="Add new class" actionListener="#{classModel.createClass}" action="classList?faces-redirect=true"/>
+      </h:form>
+   <h:link class="goBack" outcome="index" value="Back to main page"/>
+
+</h:body>
+</html>

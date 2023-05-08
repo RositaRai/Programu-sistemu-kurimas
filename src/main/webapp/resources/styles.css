@@ -1,0 +1,180 @@
+/* TABLE */
+.studentTable{
+    border-collapse:collapse;
+    border:3px solid rgb(73, 4, 4);
+    width: 900px;
+}
+
+.activityTable {
+    border-collapse:collapse;
+    border:1px solid rgb(73, 4, 4);
+    width: 600px;
+}
+
+.classRoomTable {
+    border-collapse:collapse;
+    border:1px solid rgb(73, 4, 4);
+    width: 450px;
+}
+
+.studentTableHeader, .activityTableHeader, .classRoomTableHeader {
+    text-align:center;
+    background:none repeat scroll 0 0 #bbe2ef;
+    border:2px solid rgb(73, 4, 4);
+    padding:15px;
+    color: rgb(73, 4, 4);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.classRoomTableHeader {
+    padding:10px 0;
+}
+
+.studentTableOddRow, .activityTableOddRow, .classRoomTableOddRow {
+    text-align:center;
+    background:none repeat scroll 0 0 pink;
+}
+
+.studentTableEvenRow, .activityTableEvenRow, .classRoomTableEvenRow  {
+    text-align:center;
+    background:none repeat scroll 0 0 rgb(255, 227, 232);
+}
+
+td {
+    border: 2px solid rgb(73, 4, 4);
+    padding: 10px;
+}
+
+/* INDEX.xhtml styles*/
+
+.logo {
+    box-sizing: border-box;
+    float: left;
+}
+
+.h1{
+    float: left;
+    align-items: center;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    color: rgb(222, 38, 139);
+}
+
+img {
+    width: 200px;
+    height: 200px;
+}
+
+body {
+    color: rgb(73, 4, 4);
+    font-family: "Times New Roman";
+    background: rgb(255, 227, 232);
+}
+
+div[class="wrapper clearfix"] {
+    background: pink;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu {
+    background: #bbe2ef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:20px;
+    flex-direction: column;
+}
+
+.link {
+    width: 800px;
+    padding: 10px;
+    color: #ffffff;
+    background: rgb(222, 38, 139);
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+}
+
+.linkBox {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 800px;
+}
+
+.myBatis, .goBack {
+    color: rgb(222, 38, 139);
+    font-size: 18px;
+}
+
+/* kiti */
+h2, h3, h4, h5{
+    text-align: left;
+    color: rgb(222, 38, 139);
+}
+
+.inputs {
+    padding: 5px;
+}
+
+label {
+    width: 100px;
+    display: inline-block;
+}
+
+.labels {
+    width: 180px;
+    display: inline-block;
+}
+
+input {
+    border-width: 1px;
+    border-color:rgb(73, 4, 4)
+}
+
+select {
+    border-width: 1px;
+    border-color:rgb(73, 4, 4);
+    width: 150px;
+}
+
+input[type="submit"]{
+    background: #bbe2ef;
+    font-family: inherit;
+    margin: 10px;
+    border: 1px solid rgb(73, 4, 4);
+    width: 120px;
+    padding: 8px;
+}
+
+input[type="submit"]:hover {
+    background: rgb(222, 38, 139);
+}
+
+ol {
+    background: pink;
+    max-width: fit-content;
+}
+
+.form {
+    background: pink;
+    max-width: fit-content;
+}
+
+li {
+    padding: 5px;
+    width: 300px;
+}
+
+a {
+    color: rgb(73, 4, 4);
+}
