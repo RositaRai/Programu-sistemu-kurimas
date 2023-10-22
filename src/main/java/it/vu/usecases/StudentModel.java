@@ -2,6 +2,7 @@ package it.vu.usecases;
 
 import it.vu.entities.ClassRoom;
 import it.vu.entities.Student;
+import it.vu.interceptors.LoggedInvocation;
 import it.vu.persistence.ClassesDAO;
 import it.vu.persistence.StudentsDAO;
 import lombok.Getter;
@@ -10,8 +11,12 @@ import lombok.Setter;
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
+import javax.persistence.OptimisticLockException;
 import javax.transaction.Transactional;
+import javax.ws.rs.core.Response;
 import java.util.List;
+
+import static javax.transaction.Transactional.TxType.REQUIRES_NEW;
 
 @Model
 public class StudentModel {
@@ -24,10 +29,6 @@ public class StudentModel {
 
     @Getter
     private List<ClassRoom> classRoomList;
-
-    @Getter
-    @Setter
-    private ClassRoom classRoom;
 
     @Getter
     @Setter
@@ -47,6 +48,7 @@ public class StudentModel {
     }
 
     @Transactional
+    @LoggedInvocation
     public void createStudent()
     {
         if(classId != null)

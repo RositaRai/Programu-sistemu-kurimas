@@ -2,6 +2,7 @@ package it.vu.usecases;
 
 import it.vu.entities.Activities;
 import it.vu.entities.Student;
+import it.vu.interceptors.LoggedInvocation;
 import it.vu.persistence.ActivitiesDAO;
 import it.vu.persistence.StudentsDAO;
 import lombok.Getter;
@@ -42,6 +43,7 @@ public class StudentsForActivitiesModel {
     }
 
     @Transactional
+    @LoggedInvocation
     public void addStudentToActivity() {
         Student student = studentsDAO.findByStudId(studentId);
         if(student != null && student.getActivities().stream().noneMatch(e -> e.getId() == this.activities.getId())) {

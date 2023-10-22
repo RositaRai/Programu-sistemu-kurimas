@@ -2,6 +2,7 @@ package it.vu.usecases;
 
 import it.vu.entities.ClassRoom;
 import it.vu.entities.Student;
+import it.vu.interceptors.LoggedInvocation;
 import it.vu.persistence.ClassesDAO;
 import it.vu.persistence.StudentsDAO;
 import lombok.Getter;
@@ -42,6 +43,7 @@ public class StudentsForClassModel {
     }
 
     @Transactional
+    @LoggedInvocation
     public void addStudentToClass() {
         Student student = studentsDAO.findByStudId(studentId);
         if(student != null) {

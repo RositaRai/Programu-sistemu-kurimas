@@ -31,7 +31,7 @@
                 rowClasses = "studentTableOddRow,studentTableEvenRow">
       <h:column>
          <f:facet name="header">Name</f:facet>
-         #{student.name}
+         <h:link value="#{student.name}" outcome="student?id=#{student.id}" />
       </h:column>
 
       <h:column>
@@ -59,6 +59,7 @@
       </h:column>
 
    </h:dataTable>
+
    <h3>Add new student:</h3>
       <h:form class="form">
          <div class="inputs">

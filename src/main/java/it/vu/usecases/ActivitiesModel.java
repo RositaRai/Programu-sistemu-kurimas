@@ -1,7 +1,9 @@
 package it.vu.usecases;
 
 import it.vu.entities.Activities;
+import it.vu.interceptors.LoggedInvocation;
 import it.vu.persistence.ActivitiesDAO;
+import it.vu.specialize.DescriptionInterface;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +19,9 @@ public class ActivitiesModel {
     @Inject
     private ActivitiesDAO activitiesDAO;
 
+    @Inject
+    private DescriptionInterface description;
+
     @Getter
     @Setter
     private Activities activitiesToCreate = new Activities();
@@ -30,9 +35,11 @@ public class ActivitiesModel {
     }
 
     @Transactional
+    @LoggedInvocation
     public void createActivities(){
         if(allActivities.stream().noneMatch(e -> e.equals(activitiesToCreate)))
         {
+            this.activitiesToCreate.setDescription(description.generateDescription());
             this.activitiesDAO.persist(activitiesToCreate);
         }
     }

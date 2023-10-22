@@ -54,7 +54,8 @@
             <label class="labels">Teachers name surname:</label>
             <h:inputText a:placeholder="Teachers name surname" value="#{classModel.classToCreate.teacher}" required="true" />
          </div>
-         <h:commandButton value="Add new class" actionListener="#{classModel.createClass}" action="classList?faces-redirect=true"/>
+         <h:commandButton value="Add new class" action="#{classModel.createClass}"/>
+         <h:outputText value="#{classModel.notification}" rendered="#{param['error'] == 'notification'}" />
       </h:form>
    <h:link class="goBack" outcome="index" value="Back to main page"/>
 

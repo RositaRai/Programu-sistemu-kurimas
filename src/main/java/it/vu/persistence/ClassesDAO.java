@@ -4,6 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import it.vu.entities.ClassRoom;
+
 import java.util.List;
 
 @ApplicationScoped
@@ -26,5 +27,11 @@ public class ClassesDAO {
 
     public ClassRoom findOne(Integer id) {
         return em.find(ClassRoom.class, id);
+    }
+
+    public ClassRoom findByName(String name)
+    {
+        return em.createQuery("select c from ClassRoom as c where c.className = :name", ClassRoom.class).setParameter("name", name).getResultList()
+                .stream().findFirst().orElse(null);
     }
 }

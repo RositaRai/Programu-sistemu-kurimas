@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
         @NamedQuery(name = "Class.findAll", query = "select c from ClassRoom as c")
 })
 @Table(name = "CLASS")
-public class ClassRoom {
+public class ClassRoom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,4 +30,8 @@ public class ClassRoom {
 
     @OneToMany(mappedBy = "classRoom")
     private List<Student> students = new ArrayList<>();
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
 }

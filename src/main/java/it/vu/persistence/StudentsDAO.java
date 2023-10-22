@@ -1,6 +1,5 @@
 package it.vu.persistence;
 
-import it.vu.entities.ClassRoom;
 import it.vu.entities.Student;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -32,6 +31,8 @@ public class StudentsDAO {
     }
 
     public Student update(Student student){
-        return em.merge(student);
+        Student student1 = em.merge(student);
+        em.flush();
+        return student1;
     }
 }
